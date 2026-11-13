@@ -1,0 +1,284 @@
+/* =========================================================================
+   Animaciones — concepto "Huellas": los animales asoman, crecen y dejan huellas.
+   Tiempos del Figma: micro 180 ms · overlay 250 ms · pantalla 300 ms · rebote 300 ms
+   ========================================================================= */
+
+@keyframes aparecer {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes desaparecer {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes dlg-entra {
+  from { opacity: 0; transform: translate(-50%, -46%) scale(0.92); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes dlg-sale {
+  to { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
+}
+
+@keyframes hoja-entra {
+  from { transform: translateY(100%); }
+  to { transform: none; }
+}
+
+@keyframes hoja-sale {
+  to { transform: translateY(100%); }
+}
+
+@keyframes panel-entra {
+  from { transform: translateX(100%); }
+  to { transform: none; }
+}
+
+@keyframes panel-sale {
+  to { transform: translateX(100%); }
+}
+
+@keyframes menu-entra {
+  from { opacity: 0; transform: translateY(-8px) scale(0.94); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes acordeon-abre {
+  from { height: 0; opacity: 0; }
+  to { height: var(--radix-accordion-content-height); opacity: 1; }
+}
+
+@keyframes acordeon-cierra {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+@keyframes brillo {
+  to { transform: translateX(100%); }
+}
+
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}
+
+/* Hero: Ken Burns (la foto entra grande y se asienta) */
+@keyframes ken-burns {
+  from { transform: scale(1.18) translate3d(0, 0, 0); }
+  to { transform: scale(1) translate3d(-1%, -1%, 0); }
+}
+
+.ken-burns {
+  animation: ken-burns 9s var(--ease-out) both;
+  transform-origin: 60% 40%;
+}
+
+/* Tira infinita (marquee) */
+@keyframes desplazar-izq {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes desplazar-der {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee-pista {
+  display: flex;
+  width: max-content;
+  gap: 1.25rem;
+  animation: desplazar-izq 50s linear infinite;
+}
+
+.marquee-pista.al-reves {
+  animation-name: desplazar-der;
+}
+
+.marquee:hover .marquee-pista,
+.marquee:focus-within .marquee-pista,
+.marquee[data-pausado="true"] .marquee-pista {
+  animation-play-state: paused;
+}
+
+/* Huellitas que caminan */
+@keyframes huella-pisa {
+  0%, 100% { opacity: 0; transform: scale(0.6) rotate(var(--rot, 0deg)); }
+  15%, 55% { opacity: 1; transform: scale(1) rotate(var(--rot, 0deg)); }
+  80% { opacity: 0; }
+}
+
+.huella-paso {
+  opacity: 0;
+  animation: huella-pisa 4.2s var(--ease-out) infinite;
+}
+
+/* Trazo que se dibuja solo (subrayado a mano, tilde de éxito) */
+@keyframes dibujar {
+  to { stroke-dashoffset: 0; }
+}
+
+.trazo-dibujado {
+  stroke-dasharray: var(--largo, 400);
+  stroke-dashoffset: var(--largo, 400);
+  animation: dibujar 900ms var(--ease-out) forwards;
+  animation-delay: var(--retraso, 600ms);
+}
+
+/* Pines del mapa */
+@keyframes pin-cae {
+  0% { opacity: 0; transform: translateY(-40px) scale(0.6); }
+  60% { opacity: 1; transform: translateY(4px) scale(1.04); }
+  100% { transform: none; }
+}
+
+@keyframes onda {
+  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+  100% { box-shadow: 0 0 0 14px rgba(255, 255, 255, 0); }
+}
+
+@keyframes onda-azul {
+  0% { box-shadow: 0 0 0 4px #fff, 0 0 0 4px rgba(37, 99, 235, 0.4); }
+  100% { box-shadow: 0 0 0 4px #fff, 0 0 0 22px rgba(37, 99, 235, 0); }
+}
+
+/* Loader: huella que se dibuja dedo por dedo */
+@keyframes dedo {
+  0%, 100% { opacity: 0.15; transform: scale(0.7); }
+  40% { opacity: 1; transform: scale(1); }
+}
+
+.loader-huella > * {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: dedo 1.2s var(--ease-out) infinite;
+}
+
+.loader-huella > *:nth-child(2) { animation-delay: 0.12s; }
+.loader-huella > *:nth-child(3) { animation-delay: 0.24s; }
+.loader-huella > *:nth-child(4) { animation-delay: 0.36s; }
+.loader-huella > *:nth-child(5) { animation-delay: 0.5s; }
+
+/* Barra de progreso del hero */
+@keyframes llenar {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.barra-llenando {
+  transform-origin: left;
+  animation: llenar var(--duracion, 6s) linear forwards;
+}
+
+.barra-llenando[data-pausado="true"] {
+  animation-play-state: paused;
+}
+
+/* Flotar suave (decoración) */
+@keyframes flotar {
+  0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+  50% { transform: translateY(-10px) rotate(var(--rot, 0deg)); }
+}
+
+.flotar {
+  animation: flotar 6s var(--ease-in-out) infinite;
+}
+
+/* Rebote del 404: huellitas que se van */
+@keyframes irse {
+  0% { opacity: 0; transform: translateX(-30px) rotate(90deg); }
+  20%, 70% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(60px) rotate(90deg); }
+}
+
+/* -------------------------------------------------------------------------
+   View Transitions (React <ViewTransition> + cambio de tema circular)
+   ------------------------------------------------------------------------- */
+::view-transition-group(.morph) {
+  animation-duration: 450ms;
+  animation-timing-function: var(--ease-out);
+}
+
+::view-transition-image-pair(.morph) {
+  animation-name: via-blur;
+}
+
+@keyframes via-blur {
+  30% { filter: blur(3px); }
+}
+
+/* Fundido entre páginas */
+::view-transition-old(root) {
+  animation: 200ms var(--ease-out) both desaparecer;
+}
+
+::view-transition-new(root) {
+  animation: 300ms var(--ease-out) both aparecer;
+}
+
+/* Cambio de tema: el nuevo tema se expande como un círculo desde el botón */
+:root.transicion-tema::view-transition-old(root),
+:root.transicion-tema::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+:root.transicion-tema::view-transition-new(root) {
+  animation: circulo-tema 650ms var(--ease-in-out) both;
+}
+
+@keyframes circulo-tema {
+  from { clip-path: circle(0 at var(--tema-x, 50%) var(--tema-y, 0%)); }
+  to { clip-path: circle(var(--tema-r, 150vmax) at var(--tema-x, 50%) var(--tema-y, 0%)); }
+}
+
+/* -------------------------------------------------------------------------
+   Reducir movimiento (sistema operativo o Ajustes)
+   ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="normal"]) *,
+  :root:not([data-motion="normal"]) *::before,
+  :root:not([data-motion="normal"]) *::after {
+    animation-duration: 100ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 100ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  :root:not([data-motion="normal"]) .marquee-pista,
+  :root:not([data-motion="normal"]) .ken-burns,
+  :root:not([data-motion="normal"]) .esqueleto::after,
+  :root:not([data-motion="normal"]) .huella-paso,
+  :root:not([data-motion="normal"]) .flotar {
+    animation: none !important;
+  }
+}
+
+:root[data-motion="reducido"] {
+  scroll-behavior: auto;
+}
+
+:root[data-motion="reducido"] *,
+:root[data-motion="reducido"] *::before,
+:root[data-motion="reducido"] *::after {
+  animation-duration: 100ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 100ms !important;
+}
+
+:root[data-motion="reducido"] .marquee-pista,
+:root[data-motion="reducido"] .ken-burns,
+:root[data-motion="reducido"] .esqueleto::after,
+:root[data-motion="reducido"] .huella-paso,
+:root[data-motion="reducido"] .flotar {
+  animation: none !important;
+}
+
+:root[data-motion="reducido"] .huella-paso {
+  opacity: 0.6;
+}

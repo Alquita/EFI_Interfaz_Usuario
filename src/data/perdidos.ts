@@ -1,0 +1,13 @@
+/* Datos de ejemplo (no hay backend). Fotos de Unsplash con licencia libre. */
+import type { ReportePerdido } from "@/types";
+
+export const PERDIDOS_SEMILLA: ReportePerdido[] = [
+  { id: "p1", tipo: "perdido", especie: "perro", nombre: "Ámbar", barrio: "Banda Norte", fecha: "2026-11-08", foto: "/img/perdidos/p1.jpg", alt: "Perra marrón corriendo en la orilla del mar", descripcion: "Mestiza marrón, collar verde. Responde a su nombre y es muy buena.", telefono: "358 411 0001" },
+  { id: "p2", tipo: "encontrado", especie: "perro", nombre: "Sin nombre", barrio: "Centro", fecha: "2026-11-10", foto: "/img/perdidos/p2.jpg", alt: "Cachorro tipo yorkshire negro y marrón sobre una alfombra de colores", descripcion: "Cachorro tipo yorkshire, sin collar, muy asustado. Está en tránsito.", telefono: "358 411 0002" },
+  { id: "p3", tipo: "perdido", especie: "gato", nombre: "Luz", barrio: "Alberdi", fecha: "2026-11-05", foto: "/img/perdidos/p3.jpg", alt: "Gata siamesa de ojos celestes mirando hacia arriba", descripcion: "Siamesa, ojos celestes, castrada. Salió por un balcón.", telefono: "358 411 0003" },
+  { id: "p4", tipo: "encontrado", especie: "perro", nombre: "Sin nombre", barrio: "Bimaco", fecha: "2026-11-11", foto: "/img/perdidos/p4.jpg", alt: "Perro cocker negro y blanco corriendo con una pelota en la boca", descripcion: "Cocker negro con manchas blancas, dócil, con collar sin chapita.", telefono: "358 411 0004" },
+  { id: "p5", tipo: "perdido", especie: "perro", nombre: "Odín", barrio: "Las Quintas", fecha: "2026-11-09", foto: "/img/perdidos/p5.jpg", alt: "Perro husky gris y blanco sentado en el pasto con la lengua afuera", descripcion: "Husky de ojos celestes. Se escapó por el portón. Tiene chip.", telefono: "358 411 0005" },
+  { id: "p6", tipo: "encontrado", especie: "perro", nombre: "Sin nombre", barrio: "Villa Dalcar", fecha: "2026-11-12", foto: "/img/perdidos/p6.jpg", alt: "Cachorro blanco con manchas marrones entre plantas", descripcion: "Cachorro blanco y marrón, collar rojo. Lo encontramos en la plaza.", telefono: "358 411 0006" },
+  { id: "p7", tipo: "perdido", especie: "perro", nombre: "Frida", barrio: "Barrio Golf", fecha: "2026-11-03", foto: "/img/perdidos/p7.jpg", alt: "Perrita de pelo largo blanco y negro con un moño rojo", descripcion: "Pelo largo blanco y negro, moño rojo. Tiene chip.", telefono: "358 411 0007" },
+  { id: "p8", tipo: "encontrado", especie: "gato", nombre: "Sin nombre", barrio: "Barrio Jardín", fecha: "2026-11-12", foto: "/img/perdidos/p8.jpg", alt: "Gatito atigrado bostezando sentado en el piso", descripcion: "Gatito atigrado de unos 2 meses. Come bien y está sano.", telefono: "358 411 0008" }
+];

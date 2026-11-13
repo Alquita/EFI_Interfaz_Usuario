@@ -1,0 +1,216 @@
+/* =========================================================================
+   Base: elementos globales, foco visible, utilidades de accesibilidad
+   ========================================================================= */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--brand-deco);
+    color: #1a1a1a;
+  }
+
+  /* Foco visible de alto contraste (nunca outline:none sin reemplazo) */
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: var(--r-sm);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Body con barra inferior fija en móvil */
+  body.con-barra-inferior {
+    padding-bottom: calc(var(--bottomnav-h) + env(safe-area-inset-bottom));
+  }
+
+  @media (min-width: 1024px) {
+    body.con-barra-inferior {
+      padding-bottom: 0;
+    }
+  }
+}
+
+@layer components {
+  .skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 100;
+    transform: translateY(-200%);
+    background: var(--accent);
+    color: var(--on-accent);
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--r-md);
+    font-weight: 600;
+    transition: transform var(--t-micro) var(--ease-out);
+  }
+
+  .skip-link:focus-visible {
+    transform: translateY(0);
+  }
+
+  .contenedor {
+    width: min(100% - 2rem, 75rem);
+    margin-inline: auto;
+  }
+
+  @media (min-width: 768px) {
+    .contenedor {
+      width: min(100% - 4rem, 75rem);
+    }
+  }
+
+  .contenedor-angosto {
+    width: min(100% - 2rem, 48rem);
+    margin-inline: auto;
+  }
+
+  /* Tipografía (Figma › Tipografía — Inter) */
+  .t-display {
+    font-size: 2.5rem;
+    line-height: 1.08;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+  }
+
+  .t-h1 {
+    font-size: 2.25rem;
+    line-height: 2.75rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .t-h2 {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .t-h3 {
+    font-size: 1.375rem;
+    line-height: 1.875rem;
+    font-weight: 600;
+  }
+
+  .t-h4 {
+    font-size: 1.125rem;
+    line-height: 1.625rem;
+    font-weight: 600;
+  }
+
+  @media (min-width: 768px) {
+    .t-display {
+      font-size: 4.5rem;
+      letter-spacing: -0.045em;
+    }
+
+    .t-h1 {
+      font-size: 3.5rem;
+      line-height: 4rem;
+      letter-spacing: -0.035em;
+    }
+
+    .t-h2 {
+      font-size: 2.5rem;
+      line-height: 3rem;
+      letter-spacing: -0.025em;
+    }
+  }
+
+  .t-eyebrow {
+    font-size: 0.9375rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--brand);
+  }
+
+  .t-lead {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    color: var(--text-2);
+  }
+
+  .t-muted {
+    color: var(--text-2);
+  }
+
+  .t-brand {
+    color: var(--brand);
+  }
+
+  .enlace {
+    color: var(--brand);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 2px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition:
+      background-size var(--t-micro) var(--ease-out),
+      color var(--t-micro);
+  }
+
+  .enlace:hover {
+    background-size: 100% 2px;
+  }
+
+  .enlace:active {
+    color: var(--accent-pressed);
+  }
+
+  .scroll-mt {
+    scroll-margin-top: calc(var(--header-h) + 1rem);
+  }
+
+  .kbd {
+    display: inline-block;
+    min-width: 1.75rem;
+    padding: 0.125rem 0.5rem;
+    border: 1px solid var(--border-input);
+    border-bottom-width: 3px;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-align: center;
+    background: var(--surface);
+  }
+
+  /* Textura de huellitas para fondos */
+  .textura-huellas {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='%23F97316' fill-opacity='0.07'%3E%3Cellipse cx='22' cy='30' rx='4' ry='5'/%3E%3Cellipse cx='30' cy='22' rx='4' ry='5'/%3E%3Cellipse cx='40' cy='22' rx='4' ry='5'/%3E%3Cellipse cx='48' cy='30' rx='4' ry='5'/%3E%3Cpath d='M35 32c-5 0-10 6-10 11 0 3 2 5 5 5 2 0 3-1 5-1s3 1 5 1c3 0 5-2 5-5 0-5-5-11-10-11z'/%3E%3Cellipse cx='82' cy='84' rx='4' ry='5'/%3E%3Cellipse cx='90' cy='76' rx='4' ry='5'/%3E%3Cellipse cx='100' cy='76' rx='4' ry='5'/%3E%3Cellipse cx='108' cy='84' rx='4' ry='5'/%3E%3Cpath d='M95 86c-5 0-10 6-10 11 0 3 2 5 5 5 2 0 3-1 5-1s3 1 5 1c3 0 5-2 5-5 0-5-5-11-10-11z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 120px 120px;
+  }
+}
